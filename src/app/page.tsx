@@ -26,19 +26,21 @@ export default function Home() {
     <main className="min-h-screen">
       <Header />
       
-      {/* Participant Count Banner */}
-      <div className="fixed top-20 left-1/2 transform -translate-x-1/2 z-40">
-        <Card className="bg-white/95 backdrop-blur-sm shadow-lg border-primary/20">
-          <CardContent className="px-4 py-2 flex items-center space-x-2">
-            <Users className="w-4 h-4 text-primary" />
-            <span className="text-sm font-medium text-dark">
-              Уже <span className="text-primary font-bold">{participantCount}</span> человек записались
-            </span>
-          </CardContent>
-        </Card>
-      </div>
-
       <Hero />
+
+      {/* Participant Count Banner - теперь в потоке страницы */}
+      <div className="bg-gradient-to-r from-primary/10 to-accent/10 py-8">
+        <div className="container mx-auto px-4">
+          <Card className="max-w-md mx-auto bg-white/80 backdrop-blur-sm shadow-lg border-primary/20">
+            <CardContent className="px-6 py-4 flex items-center justify-center space-x-3">
+              <Users className="w-5 h-5 text-primary" />
+              <span className="text-base font-medium text-dark">
+                Уже <span className="text-primary font-bold text-lg">{participantCount}</span> человек записались
+              </span>
+            </CardContent>
+          </Card>
+        </div>
+      </div>
 
       <Features />
 
