@@ -154,9 +154,9 @@ export function BetaTestForm() {
       <CardContent>
         <form onSubmit={handleSubmit(onValid, onInvalid)} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="name">Имя *</Label>
+            <Label htmlFor="name-field">Имя *</Label>
             <Input
-              id="name"
+              id="name-field"
               {...register("name")}
               placeholder="Ваше имя"
               className={shouldShowError("name") ? "border-destructive" : ""}
@@ -168,9 +168,9 @@ export function BetaTestForm() {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="contact">Контакт *</Label>
+            <Label htmlFor="contact-field">Контакт *</Label>
             <Input
-              id="contact"
+              id="contact-field"
               {...register("contact")}
               placeholder="Email или WhatsApp"
               className={shouldShowError("contact") ? "border-destructive" : ""}
