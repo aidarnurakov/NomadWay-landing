@@ -33,12 +33,12 @@ function isRateLimited(ip: string): boolean {
 }
 
 // Функция отправки в Telegram
-async function sendToTelegram(data: any) {
+async function sendToTelegram(data: { name: string; contact: string; role: string; comment?: string; source: string; ip: string; createdAt: Date }) {
   const botToken = process.env.TELEGRAM_BOT_TOKEN;
-  const chatId = process.env.TELEGRAM_CHAT_ID;
+  const chatId = process.env.TELEGRAM_CHAT_ID; // Группа NomadWay-notifications
   
-  if (!botToken || !chatId) {
-    console.log("Telegram не настроен: отсутствует токен или chat_id");
+  if (!botToken) {
+    console.log("Telegram не настроен: отсутствует токен");
     return false;
   }
 
@@ -68,7 +68,7 @@ async function sendToTelegram(data: any) {
     });
 
     if (response.ok) {
-      console.log("✅ Заявка отправлена в Telegram");
+      console.log("✅ Заявка отправлена в Telegram группу");
       return true;
     } else {
       console.error("❌ Ошибка отправки в Telegram:", await response.text());

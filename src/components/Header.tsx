@@ -10,6 +10,23 @@ export function Header() {
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
+  // Функция плавного скролла с учетом хедера
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      const headerHeight = 80; // Примерная высота хедера
+      const elementPosition = section.offsetTop - headerHeight;
+      
+      window.scrollTo({
+        top: elementPosition,
+        behavior: "smooth"
+      });
+      
+      // Закрываем мобильное меню при клике
+      setIsMenuOpen(false);
+    }
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-slate-200">
       <div className="container mx-auto px-4 py-4">
@@ -21,15 +38,24 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="#about" className="text-slate-700 hover:text-primary transition-colors">
+            <button
+              onClick={() => scrollToSection("about")}
+              className="text-slate-700 hover:text-primary transition-colors cursor-pointer hover:underline"
+            >
               О проекте
-            </Link>
-            <Link href="#beta-test" className="text-slate-700 hover:text-primary transition-colors">
+            </button>
+            <button
+              onClick={() => scrollToSection("beta-test")}
+              className="text-slate-700 hover:text-primary transition-colors cursor-pointer hover:underline"
+            >
               Бета-тест
-            </Link>
-            <Link href="#contact" className="text-slate-700 hover:text-primary transition-colors">
+            </button>
+            <button
+              onClick={() => scrollToSection("contact")}
+              className="text-slate-700 hover:text-primary transition-colors cursor-pointer hover:underline"
+            >
               Контакты
-            </Link>
+            </button>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -47,27 +73,24 @@ export function Header() {
         {isMenuOpen && (
           <nav className="md:hidden mt-4 pb-4 border-t border-slate-200 pt-4">
             <div className="flex flex-col space-y-4">
-              <Link
-                href="#about"
-                className="text-slate-700 hover:text-primary transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+              <button
+                onClick={() => scrollToSection("about")}
+                className="text-slate-700 hover:text-primary transition-colors cursor-pointer hover:underline text-left"
               >
                 О проекте
-              </Link>
-              <Link
-                href="#beta-test"
-                className="text-slate-700 hover:text-primary transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+              </button>
+              <button
+                onClick={() => scrollToSection("beta-test")}
+                className="text-slate-700 hover:text-primary transition-colors cursor-pointer hover:underline text-left"
               >
                 Бета-тест
-              </Link>
-              <Link
-                href="#contact"
-                className="text-slate-700 hover:text-primary transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+              </button>
+              <button
+                onClick={() => scrollToSection("contact")}
+                className="text-slate-700 hover:text-primary transition-colors cursor-pointer hover:underline text-left"
               >
                 Контакты
-              </Link>
+              </button>
             </div>
           </nav>
         )}
